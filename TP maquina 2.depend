@@ -1,0 +1,70 @@
+# depslib dependency file v1.0
+1712688612 source:c:\users\usuario\desktop\g8_p2\tp maquina 2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"Envios.h"
+	"LIBT.h"
+	"ABB.h"
+	"LSOBB.h"
+
+1712688093 c:\users\usuario\desktop\g8_p2\tp maquina 2\envios.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1712688631 c:\users\usuario\desktop\g8_p2\tp maquina 2\libt.h
+	"Envios.h"
+	<String.h>
+
+1712688618 c:\users\usuario\desktop\g8_p2\tp maquina 2\abb.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<string.h>
+	<conio.h>
+	"Envios.h"
+	<malloc.h>
+
+1712688324 c:\users\usuario\desktop\g8_p2\tp maquina 2\lsobb.h
+	"Envios.h"
+	<String.h>
+	<math.h>
+
+1712688838 source:c:\users\usuario\desktop\tp maquina 2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"Envios.h"
+	"LIBT.h"
+	"ABB.h"
+	"LSOBB.h"
+
+1712688094 c:\users\usuario\desktop\tp maquina 2\envios.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1712691108 c:\users\usuario\desktop\tp maquina 2\libt.h
+	"Envios.h"
+	<String.h>
+
+1712688620 c:\users\usuario\desktop\tp maquina 2\abb.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<string.h>
+	<conio.h>
+	"Envios.h"
+	<malloc.h>
+
+1712691121 c:\users\usuario\desktop\tp maquina 2\lsobb.h
+	"Envios.h"
+	<String.h>
+

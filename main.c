@@ -222,8 +222,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
 
 
                     bajaABB(arbol,aux);
-
-                   BajaLSOBB(lsobb,aux);
+      BajaLSOBB(lsobb,aux);
 
                     BajaLIBT(libt,aux);
 

@@ -46,12 +46,12 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
 lista->costoEvoF=0.0;
     float temp =0.0;
     int inicio = -1;  // Limite inferior exclusivo
-    int fin = lista->contador - 1;  // Limite superior inclusivo
+    int fin = lista->contador;  // Limite superior exclusivo
 
-    while (inicio < fin) {
+    while (inicio+1 < fin) {
             temp++;
 
-        int medio = (inicio + fin + 1) / 2;
+        int medio = ceil((inicio + fin)  / 2.0); // Testigo derecha, segmento mas grande izquierda
 
         int comparacion = strcmp(lista->envios[medio].codigo, codigo);
 
@@ -89,13 +89,19 @@ lista->costoEvoF=0.0;
     }
 
 
-            inicio = medio;
+
+
+            inicio = medio; //Limite inferior exclusivo
         } else {
-            fin = medio - 1;
+
+
+
+
+            fin = medio;//Limite superior exclusivo
         }
     }
 
-    *pos = inicio + 1;
+    *pos = inicio + 1 ;
     return 0;
 }
 
@@ -115,7 +121,7 @@ int AltaLSOBB(lsobb *lista, Envio envio) {
 
     if (LocalizarLSOBB(lista, envio.codigo, &pos,1)==0) {
 
-        for (int i = lista->contador - 1; i >= pos; i--) {
+        for (int i = lista->contador-1; i >= pos; i--) {
                    lista->costo++; //corrimiento
 
 

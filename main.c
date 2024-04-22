@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <direct.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -59,7 +60,7 @@ void mostrarestructuraLSOBB(lsobb *lista)
 
 int main()
 {
-    // Crea las estructuras de datos (LSO, ABB) aquí
+    // Crea las estructuras de datos (LSO, ABB) aquï¿½
 
     int opcion, submenu_opcion;
 
@@ -79,7 +80,7 @@ int main()
 
     do
     {
-        // Menú principal
+        // Menï¿½ principal
 
         printf("1. Comparacion de estructuras\n");
         printf("2. Mostrar Estructura\n");
@@ -161,11 +162,27 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
     int evocar=0;
     Envio aux;
     FILE* fp;
+    char cwd[1024];
 
-    if ((fp = fopen("Operaciones-Envios.txt", "r")) == NULL)
-    {
-        printf("No se pudo abrir el archivo");
-        return 0;
+
+
+    // Obtener el directorio actual
+    if (_getcwd(cwd, sizeof(cwd)) == NULL) {
+        perror("Error al obtener el directorio actual");
+        return 1;
+    }
+
+
+
+
+    // Concatenar la ruta del archivo al directorio actual
+    char filepath[1024];
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Enviosprueba.txt");
+
+    // Intentar abrir el archivo en modo lectura
+    if ((fp = fopen(filepath, "r")) == NULL) {
+        printf("No se pudo abrir el archivo\n");
+        return 1;
     }
     else
     {
@@ -203,7 +220,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
                 fscanf(fp, " %[^\n]", aux.fecha_envio);
                 fscanf(fp, " %[^\n]", aux.fecha_recepcion);
 
-                // Llama a la función correspondiente para alta o baja en las estructuras
+                // Llama a la funciï¿½n correspondiente para alta o baja en las estructuras
                 if(codigoOperador == 1)
                 {
                     //  mostrarenvio(aux);
@@ -246,8 +263,8 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
             }
             else
             {
-                // Maneja el caso de código de operación no reconocido
-                printf("Error: Codigo de operación no reconocido.\n");
+                // Maneja el caso de cï¿½digo de operaciï¿½n no reconocido
+                printf("Error: Codigo de operaciï¿½n no reconocido.\n");
                 //break;
             }
 

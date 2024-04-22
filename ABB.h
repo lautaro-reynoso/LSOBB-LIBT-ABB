@@ -123,21 +123,21 @@ int bajaABB(arbol *a,Envio envio)
 
                 if((*a).pos->der != NULL) //caso tiene los dos hijos
                 {
-                    aux = (*a).pos->der;
-                    while(aux->izq != NULL)
+                    aux = (*a).pos->izq;
+                    while(aux->der != NULL)
                     {
                         s++;
                         padre = aux;
-                        aux = aux->izq;
+                        aux = aux->der;
                     }
                     if(s == 0 )
                     {
-                        padre->der = aux->der;
+                        padre->izq = aux->izq;
 
                     }
                     else
                     {
-                        padre->izq = aux->der;
+                        padre->der = aux->izq;
 
                     }
                     a->costobajatemp+= 1.5;

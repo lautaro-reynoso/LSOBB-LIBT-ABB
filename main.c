@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <direct.h>
 #include <stdlib.h>
@@ -8,6 +7,7 @@
 #include "LIBT.h"
 #include "ABB.h"
 #include "LSOBB.h"
+#define MAX_Envios 250
 int LecturaOperaciones();
 char* Mayusculas();
 void mostrarestructura();
@@ -29,18 +29,20 @@ char *Mayusculas(char string[])
     }
     return  string;
 }
-void mostrarestructuraLIBT(libt *lista)
+
+void mostrarestructuraLIBT(Envio lista[])
 {
     int i;
 
-    for(i = 0 ; i < lista->contador; i++)
+    for(i = 0 ; i <  sizeof(lista) / sizeof(lista[0]); i++)
     {
-        mostrarenvio(lista->envios[i]);
+        mostrarenvio(lista[i]);
         getchar();
     }
-    printf("Total de %d envios\n", lista->contador);
+    // printf("Total de %d envios\n", lista->contador);
 
 }
+
 void mostrarestructuraLSOBB(lsobb *lista)
 {
     int i;
@@ -64,9 +66,9 @@ int main()
 
     int opcion, submenu_opcion;
 
-    libt libt;
-    libt.contador=0;
-    initLIBT(&libt);
+    Envio libt[MAX_Envios];
+
+
 
     arbol a;
     initABB(&a);
@@ -95,7 +97,7 @@ int main()
 
                 printf("\n         AltaMax | AltaMed | BajaMax | BajaMed | Max.Ev.Ex | Med.Ev.Ex | Max.Ev.Fr | Med.Ev.Fr|\n");
                 printf("-----------------------------------------------------------------------------------------------\n");
-                printf("LIBT   :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",libt.aMax, libt.aMed, libt.bMax, libt.bMed, libt.eExMax, libt.eExMed, libt.eFrMax, libt.eFrMed);
+                printf("LIBT   :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n");
                 printf("-----------------------------------------------------------------------------------------------\n");
                 printf("LSOBB :: %.2f   |   %.2f |  %.2f  |  %.2f  |    %.2f   |   %.2f    |   %.2f    |   %.2f   | \n",lsobb.aMax, lsobb.aMed, lsobb.bMax, lsobb.bMed, lsobb.eExMax, lsobb.eExMed, lsobb.eFrMax, lsobb.eFrMed);
                 printf("-----------------------------------------------------------------------------------------------\n");
@@ -126,9 +128,11 @@ int main()
 
                             break;
                         case 3:
-                            system("cls");
+
                             printf("Arbol Binario de Busqueda (orden ascendente):\n");
-                            preOrden(a.raiz);
+                            int contadorarbol = 0;
+                            inorden(a.raiz, &contadorarbol);
+                            //printf("Hay %d envios",&contadorarbol);
                             break;
                         case 4:
                             system("cls");
@@ -155,12 +159,12 @@ int main()
 
     return 0;
 }
-int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
+int LecturaOperaciones(Envio *libt[],arbol *arbol, lsobb *lsobb)
 {
 
     // Declaraciones e inicializaciones
-    int evocar=0;
-    Envio aux;
+    int evocar=0, contador=0;
+    Envio aux,aux2;
     FILE* fp;
     char cwd[1024];
 
@@ -177,7 +181,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Enviosprueba.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {
@@ -195,7 +199,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
 
 
             fscanf(fp, " %[^\n]", aux.codigo);
-             for(i=0;i<=8;i++){
+            for(i=0;i<=8;i++){
                 aux.codigo[i]=toupper(aux.codigo[i]);
             }
             if (codigoOperador == 1 || codigoOperador == 2)
@@ -205,18 +209,18 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
                 fscanf(fp, "%d", &aux.dni_receptor);
 
                 fscanf(fp, " %[^\n]", aux.nombre);
-                 for(i=0;i<=strlen(aux.nombre);i++){
-                aux.nombre[i]=toupper(aux.nombre[i]);
-            }
+                for(i=0;i<=strlen(aux.nombre);i++){
+                    aux.nombre[i]=toupper(aux.nombre[i]);
+                }
                 fscanf(fp, " %[^\n]", aux.direccion);
-                  for(i=0;i<=strlen(aux.direccion);i++){
-                aux.direccion[i]=toupper(aux.direccion[i]);
-            }
+                for(i=0;i<=strlen(aux.direccion);i++){
+                    aux.direccion[i]=toupper(aux.direccion[i]);
+                }
                 fscanf(fp, "%d", &aux.dni_remitente);
                 fscanf(fp, " %[^\n]", aux.nombre_r);
-                  for(i=0;i<=strlen(aux.nombre_r);i++){
-                aux.nombre_r[i]=toupper(aux.nombre_r[i]);
-            }
+                for(i=0;i<=strlen(aux.nombre_r);i++){
+                    aux.nombre_r[i]=toupper(aux.nombre_r[i]);
+                }
                 fscanf(fp, " %[^\n]", aux.fecha_envio);
                 fscanf(fp, " %[^\n]", aux.fecha_recepcion);
 
@@ -224,8 +228,10 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
                 if(codigoOperador == 1)
                 {
                     //  mostrarenvio(aux);
-                    AltaLIBT(libt, aux);
-                   AltaLSOBB(lsobb,aux);
+
+                 //   AltaLIBT(libt, aux, &contador);
+
+                    AltaLSOBB(lsobb,aux);
 
                     altaABB(arbol,aux);
 
@@ -239,9 +245,9 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
 
 
                     bajaABB(arbol,aux);
-      BajaLSOBB(lsobb,aux);
+                    BajaLSOBB(lsobb,aux);
 
-                    BajaLIBT(libt,aux);
+                    //  BajaLIBT(libt,aux);
 
 
 
@@ -256,7 +262,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
                 evocar++;
 
                 int exito=0;
-                evocarLIBT(libt,aux.codigo,&aux);
+               // evocarLIBT(libt, aux.codigo, &aux, &contador);
                 evocarLSOBB(lsobb,aux.codigo,&aux);
                 evocacionABB(arbol,aux.codigo,&exito);
 
@@ -274,6 +280,6 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
 
 
         return 1;
-    }
+        }
 
 }

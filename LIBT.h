@@ -5,118 +5,84 @@
 #include <String.h>
 #ifndef UNTITLED_LSO_H
 #define UNTITLED_LSO_H
-#define MAX_Envios 300
+#define MAX_Envios 250
 #endif //UNTITLED_LSO_H
 char *Mayusculas(char string[]);
-typedef struct {
-    Envio envios [MAX_Envios];
-    int contador;
-    float eExMax, eExMed, eFrMax, eFrMed, aMax, aMed, bMax, bMed, celCont,tempa,tempb, eExCant,eFrCant,aCant,bCant,costo,costoEvoE,costoEvoF,tempe,tempef;
-}libt;
 
-void initLIBT(libt *lista) {
-    lista->eExMax = 0.0;
-    lista->eExMed = 0.0;
-    lista->eFrMax = 0.0;
-    lista->eFrMed = 0.0;
-    lista->aMax = 0.0;
-    lista->aMed = 0.0;
-    lista->bMax = 0.0;
-    lista->bMed = 0.0;
-    lista->celCont = 0.0;
-    lista->eExCant = 0;
-    lista->eFrCant = 0;
-    lista->aCant = 0.0;
-    lista->bCant = 0.0;
-    lista->tempa = 0.0;
-    lista->tempb = 0.0;
-    lista->tempe= 0.0;
-    lista->tempef= 0.0;
-}
 
-int LocalizarLIBT(libt *lista, char codigo[], int *pos, int p) {
-    lista->costoEvoE=0.0;
-    lista->costoEvoF=0.0;
-    float temp =0.0;
-    int i = 0;
+int LocalizarLIBT(Envio *lista[], char codigo[], int *pos, int p, int *contador) {
 
-    while (i < lista->contador && strcmp(lista->envios[i].codigo, codigo) < 0) {
-        temp++;
-        i++;
+    int celdas_consultadas = 0;
+    int li = 0; // li inclusivo
+    int ls = (*contador); // ls exclusivo
+    int m;
+
+    while (li < ls) {
+        m = (li + ls) / 2; //Segmento mas grande a izquierda
+        celdas_consultadas++;
+
+
+        if (strcmp(codigo, lista[m]->codigo) == 0) {
+
+
+            *pos = m;
+
+
+            return 1; // Elemento encontrado
+        } else if (strcmp(codigo, lista[m]->codigo) < 0) {
+            ls = m;
+        } else {
+            li = m + 1;
+        }
     }
 
-    *pos = i;
-    if (i < lista->contador && strcmp(lista->envios[i].codigo, codigo) == 0) {
+    *pos = li;
+    return 0; // Elemento no encontrado
+
+}
 
 
-        if(p==0){
+int AltaLIBT(Envio *lista[], Envio envio, int *contador) {
+    int pos,i;
+    if(LocalizarLIBT(lista,envio.codigo,&pos,0, contador)==0){
+        Envio *aux;
+        aux = (Envio*)malloc(sizeof(Envio));
 
-
+        if(aux==NULL){
+            return 2;
         }
 
+        strcpy(aux->codigo,envio.codigo);
+        strcpy(aux->nombre,envio.nombre);
+        strcpy(aux->fecha_recepcion,envio.fecha_recepcion);
+        strcpy(aux->fecha_envio,envio.fecha_envio);
+        strcpy(aux->direccion,envio.direccion);
+        strcpy(aux->nombre_r,envio.nombre_r);
+        aux->dni_remitente=envio.dni_remitente;
+        aux->dni_receptor=envio.dni_receptor;
+
+
+
+        for (i = (*contador); i >= pos; i--) {
+            lista[i + 1] = lista[i];
+        }
+
+        lista[pos] = aux;
+
+
+
+        (*contador)++;
 
         return 1;
-    } else {
-
-
-        if(i<lista->contador){
-
-            temp++;
-        }
-        if(p==0){
-
-        }
-
-        return 0;
 
     }
+
+    return 0;
 
 }
 
 
-int AltaLIBT(libt *lista, Envio envio) {
-    lista->costo =0.0;
-    int pos;
-    int i;
-    if(lista->contador == MAX_Envios){
-        return 2;
-    }
-    int res = LocalizarLIBT(lista, envio.codigo, &pos,1);
-    if (res == 0) {
-        for (i = lista->contador-1; i >= pos; i--) {
-            lista->costo++; //corrimiento
-
-            lista->envios[i + 1] = lista->envios[i];
-        }
-        lista->envios[pos] = envio;
-        lista->contador++;
-
-
-        if (lista->costo > lista->aMax) {
-
-            lista->aMax = lista->costo; //maximo
-
-
-
-        }
-
-
-        lista->tempa+=lista->costo; //promedio
-
-        lista->aMed=lista->tempa/(lista->aCant+1);
-
-        lista->aCant++; //cantidad de altas
-
-
-
-        return 0;
-    } else {
-
-
-        return 1;
-    }
-
-}
+/*
 int BajaLIBT(libt *lista,Envio envio) {
     lista->costo =0.0;
 
@@ -172,14 +138,14 @@ int BajaLIBT(libt *lista,Envio envio) {
 
 return 0;
 }
-
-int evocarLIBT (libt *lista, char codigo[], Envio *envio){
+*/
+int evocarLIBT (Envio *lista[], char codigo[], Envio *envio, int *contador){
     int pos;
-    int res = LocalizarLIBT(lista,codigo,&pos,0);
+    int res = LocalizarLIBT(lista,codigo,&pos,0,contador);
     if (res == 1){
-        (*envio)= lista->envios[pos];
+        (*envio)= *lista[pos];
         return 1;// se
         // econtro
     }else
-        return 0;
+    return 0;
 }

@@ -2,6 +2,7 @@
 
 #include "Envios.h"
 #include <String.h>
+#include <math.h>
 #ifndef UNTITLED_LSO_H
 #define UNTITLED_LSO_H
 #define MAX_Envios 300

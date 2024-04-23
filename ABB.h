@@ -55,7 +55,7 @@ int localizarABB(arbol *a,char codigo[], int f)
     //a->eFrMax = 0;
     a->pos = a->raiz;
     a->padre = a->raiz;
-    while((*a).pos != NULL && strcmp((*a).pos->envio.codigo, codigo))
+    while((*a).pos != NULL && strcmp((*a).pos->envio.codigo, codigo)!=0)
     {
         a->celCont++;
         if (strcmp((*a).pos->envio.codigo, codigo) > 0)
@@ -70,6 +70,7 @@ int localizarABB(arbol *a,char codigo[], int f)
         }
 
     }
+    a->celCont+1;
     if ((*a).pos == NULL){
         if(f == 2){
             if(a->celCont > a->eFrMax){
@@ -83,8 +84,9 @@ int localizarABB(arbol *a,char codigo[], int f)
         return 0;
     }else{
         if(f == 2){
+
             if(a->celCont > a->eExMax){
-                a->eExMax =a->celCont+1;
+                a->eExMax =a->celCont;
             }
             a->eExCant++;
             a->costoacumEE += a->celCont;
@@ -336,40 +338,36 @@ int evocacionABB(arbol *a,char codigo[],int *exito)
     return 0;
 }
 
+void inorden(nodo* nodo_actual, int *cont) {
+    *cont++;
+    if (nodo_actual != NULL) {
 
-void preOrden(nodo *a)
-{
-    if( a == NULL)
-    {
-    }
-    else
-    {
-        printf("\nCodigo: %s \n", a->envio.codigo);
-        printf("Dni receptor: %d\n",a->envio.dni_receptor);
-        printf("Nombre y Apellido: %s\n",a->envio.nombre);
-        printf("Direccion: %s\n",a->envio.direccion);
-        printf("Dni remitente: %d\n",a->envio.dni_remitente);
-        printf("Fecha de envio: %s\n",a->envio.fecha_envio);
-        printf("Fecha recepcion: %s\n",a->envio.fecha_recepcion);
-        printf("Nombre receptor: %s\n\n",a->envio.nombre_r);
-        if( a->izq != NULL )
+        inorden(nodo_actual->izq,cont);
+        printf("\nCodigo: %s \n", nodo_actual->envio.codigo);
+        printf("Dni receptor: %d\n",nodo_actual->envio.dni_receptor);
+        printf("Nombre y Apellido: %s\n",nodo_actual->envio.nombre);
+        printf("Direccion: %s\n",nodo_actual->envio.direccion);
+        printf("Dni remitente: %d\n",nodo_actual->envio.dni_remitente);
+        printf("Fecha de envio: %s\n",nodo_actual->envio.fecha_envio);
+        printf("Fecha recepcion: %s\n",nodo_actual->envio.fecha_recepcion);
+        printf("Nombre receptor: %s\n\n",nodo_actual->envio.nombre_r);
+        if( nodo_actual->izq != NULL )
         {
-            printf("\nEl Codigo de su hijo izquierdo es: %s",a->izq->envio.codigo);
+            printf("El Codigo de su hijo izquierdo es: %s\n",nodo_actual->izq->envio.codigo);
         }
         else
         {
-            printf("\nNo tiene hijo izquierdo.");
+            printf("No tiene hijo izquierdo.\n");
         }
-
-        if(a->der != NULL)
+        if(nodo_actual->der != NULL)
         {
-            printf("\nEl Codigo de su hijo derecho es: %s",a->der->envio.codigo);
+            printf("El Codigo de su hijo derecho es: %s\n",nodo_actual->der->envio.codigo);
         }
         else
-            printf("\nNo tiene hijo derecho.");
-        printf("\n*********************************************\n");
+            printf("No tiene hijo derecho.\n");
         getchar();
-        preOrden(a->izq);
-        preOrden(a->der);
+        inorden(nodo_actual->der,cont);
     }
 }
+
+

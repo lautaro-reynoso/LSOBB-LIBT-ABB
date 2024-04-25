@@ -162,58 +162,7 @@ int AltaLSOBB(lsobb *lista, Envio envio) {
     }
 }
 
-/*
- *
- * int AltaLSOBB(lsobb *lista, Envio envio) {
 
-
-    lista->costo =0.0;
-    int pos=0;
-
-    if (lista->contador == MAX_Envios) {
-        return 2; // Lista llena
-    }
-
-    if (LocalizarLSOBB(lista, envio.codigo, &pos,1)==0) {
-
-        for (int i = lista->contador - 1; i >= pos; i--) {
-
-
-
-            lista->envios[i + 1] = lista->envios[i];
-        }
-        lista->envios[pos] = envio;
-        lista->contador++;
-
-
-
-        return 0;
-    } else {
-
-        return 1;
-    }
-}
- *
- * int AltaLSOBB(lsobb *lista, Envio envio) {
-
-    lista->costo =0.0;
-    int pos;
-    if (lista->contador == MAX_Envios) {
-        return 2; // Lista llena
-    }
-    if (LocalizarLSOBB(lista, envio.codigo, &pos,1)==0) {
-        for (int i = lista->contador - 1; i >= pos; i--) {
-            lista->envios[i + 1] = lista->envios[i];
-        }
-        lista->envios[pos] = envio;
-        lista->contador++;
-        return 0;
-    } else {
-
-        return 1;
-    }
-}
- */
 
 int BajaLSOBB(lsobb *lista, Envio envio) {
     lista->costo =0.0;
@@ -226,6 +175,9 @@ int BajaLSOBB(lsobb *lista, Envio envio) {
         && (strcmp(lista->envios[pos].nombre_r,envio.nombre_r)==0)){
 
         if (encontrado) {
+
+
+
             for (i = pos; i < lista->contador - 1; i++) {
                 lista->costo++; //corrimiento
                 lista->envios[i] = lista->envios[i + 1];

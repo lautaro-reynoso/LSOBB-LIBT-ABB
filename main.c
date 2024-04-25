@@ -30,16 +30,16 @@ char *Mayusculas(char string[])
     return  string;
 }
 
-void mostrarestructuraLIBT(Envio lista[])
+void mostrarestructuraLIBT(libt lista)
 {
     int i;
 
-    for(i = 0 ; i <  sizeof(lista) / sizeof(lista[0]); i++)
+    for(i = 0 ; i <  lista.contador ; i++)
     {
-        mostrarenvio(lista[i]);
+        mostrarenvio(*lista.envios[i]);
         getchar();
     }
-    // printf("Total de %d envios\n", lista->contador);
+     printf("Total de %d envios\n", lista.contador);
 
 }
 
@@ -66,7 +66,7 @@ int main()
 
     int opcion, submenu_opcion;
 
-    Envio libt[MAX_Envios];
+    libt libt;
 
 
 
@@ -118,8 +118,8 @@ int main()
                         case 1:
                             system("cls");
 
-                            printf("Lista Secuencial Ordenada:\n");
-                            mostrarestructuraLIBT(&libt);
+                            printf("Lista Invertida con Busqueda Triseccion:\n");
+                            mostrarestructuraLIBT(libt);
                             break;
                         case 2:
                             system("cls");
@@ -128,11 +128,11 @@ int main()
 
                             break;
                         case 3:
-
+                            system("cls");
                             printf("Arbol Binario de Busqueda (orden ascendente):\n");
                             int contadorarbol = 0;
                             inorden(a.raiz, &contadorarbol);
-                            //printf("Hay %d envios",&contadorarbol);
+
                             break;
                         case 4:
                             system("cls");
@@ -159,7 +159,7 @@ int main()
 
     return 0;
 }
-int LecturaOperaciones(Envio *libt[],arbol *arbol, lsobb *lsobb)
+int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
 {
 
     // Declaraciones e inicializaciones
@@ -229,7 +229,7 @@ int LecturaOperaciones(Envio *libt[],arbol *arbol, lsobb *lsobb)
                 {
                     //  mostrarenvio(aux);
 
-                 //   AltaLIBT(libt, aux, &contador);
+                    AltaLIBT(libt, aux);
 
                     AltaLSOBB(lsobb,aux);
 
@@ -247,7 +247,7 @@ int LecturaOperaciones(Envio *libt[],arbol *arbol, lsobb *lsobb)
                     bajaABB(arbol,aux);
                     BajaLSOBB(lsobb,aux);
 
-                    //  BajaLIBT(libt,aux);
+                    BajaLIBT(libt,aux);
 
 
 

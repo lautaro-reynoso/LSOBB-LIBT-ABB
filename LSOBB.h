@@ -20,6 +20,7 @@ typedef struct {
 
 
 void initLSOBB(lsobb *lista) {
+
     lista->eExMax = 0.0;
     lista->eExMed = 0.0;
     lista->eFrMax = 0.0;
@@ -37,6 +38,7 @@ void initLSOBB(lsobb *lista) {
     lista->tempb = 0.0;
     lista->tempe= 0.0;
     lista->tempef= 0.0;
+
 }
 
 
@@ -69,15 +71,11 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
 
             inicio = medio;
 
-
             if (strcmp((*lista).envios[(int)fin-1].codigo,codigo)>0){
                 (*pos)=inicio;
             }else{
                 (*pos)=inicio+1;
             }
-
-
-
 
         }
 

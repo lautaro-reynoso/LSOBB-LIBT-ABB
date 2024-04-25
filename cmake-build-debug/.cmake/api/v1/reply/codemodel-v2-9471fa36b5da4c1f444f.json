@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "LSOBB_LIBT_ABB::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-LSOBB_LIBT_ABB-Debug-6537c91643395a639d09.json",
+					"jsonFile" : "target-LSOBB_LIBT_ABB-Debug-0ce1c12ace86b7218151.json",
 					"name" : "LSOBB_LIBT_ABB",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Usuario/Downloads/LSOBB-LIBT-ABB/cmake-build-debug",
-		"source" : "C:/Users/Usuario/Downloads/LSOBB-LIBT-ABB"
+		"build" : "C:/Users/lautaro/OneDrive/Escritorio/LSOBB-LIBT-ABB/cmake-build-debug",
+		"source" : "C:/Users/lautaro/OneDrive/Escritorio/LSOBB-LIBT-ABB"
 	},
 	"version" : 
 	{

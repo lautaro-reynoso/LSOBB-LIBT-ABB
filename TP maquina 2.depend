@@ -68,8 +68,9 @@
 	"Envios.h"
 	<String.h>
 
-1713562454 source:c:\users\mateo\onedrive\escritorio\lsobb-libt-abb\main.c
+1714174008 source:c:\users\mateo\onedrive\escritorio\lsobb-libt-abb\main.c
 	<stdio.h>
+	<direct.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
@@ -78,17 +79,17 @@
 	"ABB.h"
 	"LSOBB.h"
 
-1713554620 c:\users\mateo\onedrive\escritorio\lsobb-libt-abb\envios.h
+1714170097 c:\users\mateo\onedrive\escritorio\lsobb-libt-abb\envios.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 
-1713554620 c:\users\mateo\onedrive\escritorio\lsobb-libt-abb\libt.h
+1714170097 c:\users\mateo\onedrive\escritorio\lsobb-libt-abb\libt.h
 	"Envios.h"
 	<String.h>
 
-1713554620 c:\users\mateo\onedrive\escritorio\lsobb-libt-abb\abb.h
+1714170097 c:\users\mateo\onedrive\escritorio\lsobb-libt-abb\abb.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -98,7 +99,8 @@
 	"Envios.h"
 	<malloc.h>
 
-1713563517 c:\users\mateo\onedrive\escritorio\lsobb-libt-abb\lsobb.h
+1714174271 c:\users\mateo\onedrive\escritorio\lsobb-libt-abb\lsobb.h
 	"Envios.h"
 	<String.h>
+	<math.h>
 

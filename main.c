@@ -181,7 +181,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "/Operaciones-Envios.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {
@@ -229,7 +229,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
                 {
                     //  mostrarenvio(aux);
 
-                    AltaLIBT(libt, aux);
+               //     AltaLIBT(libt, aux);
 
                     AltaLSOBB(lsobb,aux);
 
@@ -247,7 +247,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
                     bajaABB(arbol,aux);
                     BajaLSOBB(lsobb,aux);
 
-                    BajaLIBT(libt,aux);
+             //       BajaLIBT(libt,aux);
 
 
 

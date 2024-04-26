@@ -45,55 +45,34 @@ void initLSOBB(lsobb *lista) {
 int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
     float inicio = -1, medio = 0, comparacion = 0;             // Limite inferior exclusivo
     float fin = lista->contador ;   // Limite superior exclusivo
-
-
     lista->costoEvoE=0.0;
     lista->costoEvoF=0.0;
-
-
     float temp =0.0;
     if(lista->contador==0){
         return 0;
     }
-    while (inicio+1 < fin) {
+    while (inicio+1 <fin-1) {
         temp++;
-        medio = ceil((inicio + fin) / 2.0);
-
-
+        medio = ((inicio + fin ) / 2)+ 1;
         comparacion = strcmp( lista->envios[(int)medio].codigo, codigo);
-
-
         if (comparacion > 0) {
-
             fin = medio;
-
         } else {
-
-            inicio = medio;
-
-            if (strcmp((*lista).envios[(int)fin-1].codigo,codigo)>0){
-                (*pos)=inicio;
-            }else{
-                (*pos)=inicio+1;
-            }
-
+            inicio = medio-1;
         }
-
-
     }
-
     //vector auxiliar
     if(lista->vector_aux[(int)inicio+1] == 0){
         temp++;
         lista->vector_aux[(int)inicio+1]+=1;
-
     }
     // Posición de inserción si no se encontró el elemento
 
     if (strcmp(lista->envios[(int)fin-1].codigo, codigo) == 0) {
+
         if(p==0){
             if(lista->eExMax<temp){
-                lista->eExMax = temp-1;
+                lista->eExMax = temp;
             }
             lista->eExCant++;
             lista->costoEvoE+=temp;
@@ -103,6 +82,19 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
         *pos = (int)fin-1;
         return 1; // Elemento encontrado
     } else {
+
+
+
+        if (strcmp((*lista).envios[(int)fin-1].codigo,codigo)<0){
+            (*pos)=fin;
+        }else{
+            (*pos)=fin-1;
+        }
+
+
+
+
+
         if(p==0){
             if(lista->eFrMax<temp){
                 lista->eFrMax = temp;
@@ -112,7 +104,15 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
             lista->tempef+=lista->costoEvoF;
             lista->eFrMed = lista->tempef/(lista->eFrCant);
         }
-        *pos = (int)fin;
+  //      *pos = (int)fin;
+
+
+
+/*
+
+*/
+
+
         return 0; // Elemento no encontrado
     }
 }
@@ -150,10 +150,10 @@ int AltaLSOBB(lsobb *lista, Envio envio) {
 
 
         lista->tempa+=lista->costo; //promedio
+ lista->aCant++; //cantidad de altas
+        lista->aMed=lista->tempa/(lista->aCant);
 
-        lista->aMed=lista->tempa/(lista->aCant+1);
 
-        lista->aCant++; //cantidad de altas
 
         return 0;
     } else {
@@ -196,11 +196,11 @@ int BajaLSOBB(lsobb *lista, Envio envio) {
 
             lista->tempb+=lista->costo; //promedio
 
-
-            lista->bMed=lista->tempb/(lista->bCant+1);
-
-
             lista->bCant++; //cantidad de bajas
+            lista->bMed=lista->tempb/(lista->bCant);
+
+
+
             return 0;
         } else {
             return 1;

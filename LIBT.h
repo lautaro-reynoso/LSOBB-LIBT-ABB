@@ -15,6 +15,27 @@ typedef struct {
     float eExMax, eExMed, eFrMax, eFrMed, aMax, aMed, bMax, bMed, celCont,tempa,tempb, eExCant,eFrCant,aCant,bCant,costo,costoEvoE,costoEvoF,tempe,tempef;
 }libt;
 
+void initLIBT(libt *lista) {
+
+    lista->eExMax = 0.0;
+    lista->eExMed = 0.0;
+    lista->eFrMax = 0.0;
+    lista->eFrMed = 0.0;
+    lista->aMax = 0.0;
+    lista->aMed = 0.0;
+    lista->bMax = 0.0;
+    lista->bMed = 0.0;
+    lista->celCont = 0.0;
+    lista->eExCant = 0.0;
+    lista->eFrCant = 0.0;
+    lista->aCant = 0.0;
+    lista->bCant = 0.0;
+    lista->tempa = 0.0;
+    lista->tempb = 0.0;
+    lista->tempe= 0.0;
+    lista->tempef= 0.0;
+
+}
 
 int LocalizarLIBT(libt *lista, char codigo[], int *pos, int p) {
 
@@ -70,16 +91,26 @@ int AltaLIBT(libt *lista, Envio envio) {
 
         if((*lista).contador!=0){
             for (i = lista->contador; i >= pos; i--) {
+                lista->costo++;
                 lista->envios[i + 1] = lista->envios[i];
+
+
             }
         }
 
 
         lista->envios[pos] = aux;
 
-
-
         lista->contador++;
+
+        if (lista->costo > lista->aMax) {
+            lista->aMax = lista->costo; //maximo
+        }
+        lista->aCant++; //cantidad de altas
+
+        lista->tempa+=lista->costo; //promedio
+
+        lista->aMed=lista->tempa/(lista->aCant);
 
         return 1;
 
@@ -126,13 +157,12 @@ int BajaLIBT(libt *lista,Envio envio) {
             }
 
             lista->tempb+=lista->costo; //promedio
+            lista->bCant++;
+            lista->bMed=lista->tempb/(lista->bCant);
 
 
-            lista->bMed=lista->tempb/(lista->bCant+1);
 
-
-
-            lista->bCant++; //cantidad de bajas
+             //cantidad de bajas
 
 
 

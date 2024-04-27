@@ -15,7 +15,8 @@ typedef struct {
     Envio envios [MAX_Envios];
     int contador;
     int vector_aux[MAX_Envios];
-    float eExMax, eExMed, eFrMax, eFrMed, aMax, aMed, bMax, bMed, celCont,tempa,tempb, eExCant,eFrCant,aCant,bCant,costo,costoEvoE,costoEvoF,tempe,tempef;
+    float eExMax, eExMed, eFrMax, eFrMed, aMax, aMed, bMax, bMed, celCont,tempa,tempb, eExCant,eFrCant
+    ,aCant,bCant,costo,costoEvoE,costoEvoF,tempe,tempef;
 }lsobb;
 
 
@@ -43,7 +44,8 @@ void initLSOBB(lsobb *lista) {
 
 
 int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
-    float inicio = -1, medio = 0, comparacion = 0;             // Limite inferior exclusivo
+    float inicio = -1, comparacion = 0;
+    int medio = 0;// Limite inferior exclusivo
     float fin = lista->contador ;   // Limite superior exclusivo
     lista->costoEvoE=0.0;
     lista->costoEvoF=0.0;
@@ -65,7 +67,7 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
     while (inicio+1 <fin-1) {
         temp++;
         medio = ((inicio + fin ) / 2)+ 1;
-        comparacion = strcmp( lista->envios[(int)medio].codigo, codigo);
+        comparacion = strcmp( lista->envios[medio].codigo, codigo);
         if (comparacion > 0) {
             fin = medio;
         } else {
@@ -146,6 +148,7 @@ int AltaLSOBB(lsobb *lista, Envio envio) {
 
 
 
+
         if (lista->costo > lista->aMax) {
             lista->aMax = lista->costo; //maximo
         }
@@ -154,7 +157,6 @@ int AltaLSOBB(lsobb *lista, Envio envio) {
         lista->tempa+=lista->costo; //promedio
 
         lista->aMed=lista->tempa/(lista->aCant);
-
 
 
         return 0;

@@ -11,7 +11,7 @@
 #define MAX_LONGITUD 100
 
 
-#define MAX_Envios 300
+#define MAX_Envios 250
 
 typedef struct {
     char codigo[7];

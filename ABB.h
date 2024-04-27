@@ -117,7 +117,7 @@ int bajaABB(arbol *a,Envio envio)
             padre = (*a).pos;
             aux = a->pos;
 
-
+            (*a).bCant++;
 
 
             if ((*a).pos->izq != NULL)
@@ -142,15 +142,15 @@ int bajaABB(arbol *a,Envio envio)
                         padre->der = aux->izq;
 
                     }
-                    a->costobajatemp+= 1.5;
-                    a->costobajaacum += 1.5;
+                    a->costobajatemp= 0.5;
+                    a->costobajaacum += 0.5;
 
                     if((*a).bMax < a->costobajatemp){
                         (*a).bMax = a->costobajatemp;
                     }
                     (*a).pos->envio = aux->envio;
                     free(aux);
-                    (*a).bCant++;
+
                     (*a).bMed = a->costobajaacum/((*a).bCant);
                     return 1;
                 }
@@ -165,13 +165,13 @@ int bajaABB(arbol *a,Envio envio)
 
                     else
                         (*a).raiz = aux;
-                    a->costobajatemp+= 0.5;
-                    a->costobajaacum ++;
+                    a->costobajatemp= 0.5;
+                    a->costobajaacum +=0.5;
                     if((*a).bMax < a->costobajatemp){
                         (*a).bMax = a->costobajatemp;
                     }
                     free(((*a).pos));
-                    (*a).bCant++;
+
                     (*a).bMed = a->costobajaacum/((*a).bCant);
                     return 1;
                 }
@@ -188,27 +188,27 @@ int bajaABB(arbol *a,Envio envio)
 
                 else
                     (*a).raiz = aux;
-                a->costobajatemp+= 0.5;
-                a->costobajaacum ++;
+                a->costobajatemp= 0.5;
+                a->costobajaacum +=0.5;
 
                 if((*a).bMax < a->costobajatemp){
                     (*a).bMax = a->costobajatemp;
                 }
                 free(((*a).pos));
-                (*a).bCant++;
+
                 (*a).bMed = a->costobajaacum/((*a).bCant);
                 return 1;
             }
             else if((*a).padre == (*a).pos)//caso raiz
             {
                 (*a).raiz = NULL;
-                a->costobajatemp+= 0.5;
-                a->costobajaacum ++;
+                a->costobajatemp= 0.5;
+                a->costobajaacum +=0.5;
                 if((*a).bMax < a->costobajatemp){
                     (*a).bMax = a->costobajatemp;
                 }
                 free(aux);
-                (*a).bCant++;
+
                 (*a).bMed = a->costobajaacum/((*a).bCant);
                 return 1;
             }
@@ -216,12 +216,12 @@ int bajaABB(arbol *a,Envio envio)
             {
                 (*a).padre->izq = NULL;
                 a->costobajatemp+= 0.5;
-                a->costobajaacum ++;
+                a->costobajaacum +=0.5;
                 if((*a).bMax < a->costobajatemp){
                     (*a).bMax = a->costobajatemp;
                 }
                 free(aux);
-                (*a).bCant++;
+
                 (*a).bMed = a->costobajaacum/((*a).bCant);
                 return 1;
             }
@@ -229,12 +229,12 @@ int bajaABB(arbol *a,Envio envio)
             {
                 (*a).padre->der = NULL;
                 a->costobajatemp+= 0.5;
-                a->costobajaacum ++;
+                a->costobajaacum +=0.5;
                 if((*a).bMax < a->costobajatemp){
                     (*a).bMax = a->costobajatemp;
                 }
                 free(aux);
-                (*a).bCant++;
+
                 (*a).bMed = a->costobajaacum/((*a).bCant);
                 return 1;
             }
@@ -264,7 +264,7 @@ int altaABB(arbol *a,Envio envio)
         else
         {
 
-            (*a).aCant++;
+
             nuevo_nodo->envio=envio;
             nuevo_nodo->der=NULL;
             nuevo_nodo->izq=NULL;

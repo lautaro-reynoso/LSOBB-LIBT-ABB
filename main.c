@@ -67,13 +67,9 @@ int main()
     int opcion, submenu_opcion;
 
     libt libt;
-
-
-
+    initLIBT(&libt);
     arbol a;
     initABB(&a);
-
-
     lsobb lsobb;
     lsobb.contador=0;
     initLSOBB(&lsobb);
@@ -97,7 +93,7 @@ int main()
 
                 printf("\n         AltaMax | AltaMed | BajaMax | BajaMed | Max.Ev.Ex | Med.Ev.Ex | Max.Ev.Fr | Med.Ev.Fr|\n");
                 printf("-----------------------------------------------------------------------------------------------\n");
-                printf("LIBT   :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n");
+                printf("LIBT   :: %.2f   |   %.2f |  %.2f  |  %.2f  |   %.2f   |  %.2f    |  %.2f    |  %.2f   | \n",libt.aMax, libt.aMed, libt.bMax, libt.bMed, libt.eExMax, libt.eExMed, libt.eFrMax, libt.eFrMed);
                 printf("-----------------------------------------------------------------------------------------------\n");
                 printf("LSOBB :: %.2f   |   %.2f |  %.2f  |  %.2f  |    %.2f   |   %.2f    |   %.2f    |   %.2f   | \n",lsobb.aMax, lsobb.aMed, lsobb.bMax, lsobb.bMed, lsobb.eExMax, lsobb.eExMed, lsobb.eFrMax, lsobb.eFrMed);
                    printf("-----------------------------------------------------------------------------------------------\n");
@@ -181,7 +177,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "/Operaciones-Envios.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {
@@ -229,7 +225,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
                 {
                     //  mostrarenvio(aux);
 
-               //     AltaLIBT(libt, aux);
+                  //  AltaLIBT(libt, aux);
 
                     AltaLSOBB(lsobb,aux);
 
@@ -247,7 +243,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
                     bajaABB(arbol,aux);
                     BajaLSOBB(lsobb,aux);
 
-             //       BajaLIBT(libt,aux);
+                //    BajaLIBT(libt,aux);
 
 
 

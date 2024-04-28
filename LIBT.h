@@ -38,7 +38,7 @@ void initLIBT(libt *lista) {
     lista->total_celdas_consultadas_exitos = 0;
     lista->media_fracasos = 0.0;
     lista->media_exitos = 0.0;
-    // Nuevas variables para el seguimiento de éxitos y fracasos
+    // Nuevas variables para el seguimiento de ï¿½xitos y fracasos
 
 
     lista->eExMax = 0.0;
@@ -86,8 +86,8 @@ int LocalizarLIBT(libt *lista, char codigo[], int *pos, int p) {
                     lista->max_exitos = celdas_consultadas ;
                 }
 
-                lista->total_celdas_consultadas_exitos += celdas_consultadas; // Actualizar el total de celdas consultadas para éxitos
-                lista->media_exitos = (float) lista->total_celdas_consultadas_exitos / lista->total_exitos; // Calcular la media para éxitos
+                lista->total_celdas_consultadas_exitos += celdas_consultadas; // Actualizar el total de celdas consultadas para ï¿½xitos
+                lista->media_exitos = (float) lista->total_celdas_consultadas_exitos / lista->total_exitos; // Calcular la media para ï¿½xitos
             }
 
 
@@ -120,7 +120,7 @@ int LocalizarLIBT(libt *lista, char codigo[], int *pos, int p) {
 
 int AltaLIBT(libt *lista, Envio envio) {
 
-       int costo =0.0;
+       float costo =0.0;
 
 
 
@@ -144,8 +144,8 @@ int AltaLIBT(libt *lista, Envio envio) {
 
 
         if((*lista).contador!=0){
-            for (i = lista->contador; i >= pos; i--) {
-               costo++;
+            for (i = lista->contador-1; i >= pos; i--) {
+               costo=costo+0.5;
                 lista->envios[i + 1] = lista->envios[i];
 
 
@@ -153,6 +153,8 @@ int AltaLIBT(libt *lista, Envio envio) {
         }
 
 
+        //printf("Codigo:%s ---> costo: %.2f \n",envio.codigo,costo);
+       // getchar();
         lista->envios[pos] = aux;
 
         lista->contador++;
@@ -167,7 +169,7 @@ int AltaLIBT(libt *lista, Envio envio) {
 
 
         lista->tempa+=costo; //promedio
-  lista->aCant++; //cantidad de altas
+        lista->aCant++; //cantidad de altas
         lista->aMed=lista->tempa/(lista->aCant);
 
 
@@ -184,7 +186,7 @@ int AltaLIBT(libt *lista, Envio envio) {
 
 
 int BajaLIBT(libt *lista,Envio envio) {
-   int costo =0.0;
+   float costo =0.0;
 
 
 
@@ -202,7 +204,7 @@ int BajaLIBT(libt *lista,Envio envio) {
 
         if (localizar_resultado) {
             for (i = pos; i < lista->contador-1; i++) {
-                costo++; //corrimiento
+                costo+=0.5; //corrimiento
                 lista->envios[i] = lista->envios[i + 1];
             }
 

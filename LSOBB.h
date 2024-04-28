@@ -4,7 +4,7 @@
 #include <math.h>
 #ifndef UNTITLED_LSO_H
 #define UNTITLED_LSO_H
-#define MAX_Envios 300
+
 #endif //UNTITLED_LSO_H
 
 //  float eExMax=0.0, eExMed=0.0, eFrMax=0.0, eFrMed=0.0, aMax=0.0, aMed=0.0, bMax=0.0, bMed=0.0, celCont=0.0;
@@ -49,32 +49,30 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
     float fin = lista->contador ;   // Limite superior exclusivo
     lista->costoEvoE=0.0;
     lista->costoEvoF=0.0;
-    int vector_aux[MAX_Envios],i;
+
 
 
 
     float temp =0.0;
     if(lista->contador==0){
             *pos=0;
-              if(p==0){
-            if(lista->eExMax<temp){
-                lista->eExMax = temp;
+            if(p==0){
+            if(lista->eFrMax<temp){
+                lista->eFrMax = temp;
             }
-            lista->eExCant++;
-            lista->costoEvoE+=temp;
-            lista->tempe+=lista->costoEvoE;
-            lista->eExMed = lista->tempe/(lista->eExCant);
+            lista->eFrCant++;
+            lista->costoEvoF+=temp;
+            lista->tempef+=lista->costoEvoF;
+            lista->eFrMed = lista->tempef/(lista->eExCant);
         }
 
         return 0;
     }
 
-    for(i = 0; i < (lista->contador); i++){
-        vector_aux[i] = 0;
-    }
+
 
     while (inicio+1 <fin-1) {
-   temp++;
+        temp++;
         medio = ((inicio + fin ) / 2)+ 1;
         comparacion = strcmp( lista->envios[medio].codigo, codigo);
         if (comparacion > 0) {
@@ -83,29 +81,11 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
             inicio = medio-1;
         }
 
-        if(vector_aux[(int)medio] == 0 && pos == 0){
-            temp++;
-            vector_aux[(int)medio]=1;
-        }
-
-
     }
-
-
-    //vector auxiliar
-
-
 
     // Posición de inserción si no se encontró el elemento
 
-
     if (strcmp(lista->envios[(int)fin-1].codigo, codigo) == 0) {
-
-        if(vector_aux[(int)fin-1] == 0){
-
-          temp++;
-
-        }
 
           if(p==0){
 

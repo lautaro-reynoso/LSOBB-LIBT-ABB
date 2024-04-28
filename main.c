@@ -7,7 +7,7 @@
 #include "LIBT.h"
 #include "ABB.h"
 #include "LSOBB.h"
-#define MAX_Envios 250
+
 int LecturaOperaciones();
 char* Mayusculas();
 void mostrarestructura();
@@ -68,14 +68,13 @@ int main()
 
     libt libt;
     initLIBT(&libt);
-
     libt.contador=0;
+
     arbol a;
     initABB(&a);
+
     lsobb lsobb;
     lsobb.contador=0;
-
-
     initLSOBB(&lsobb);
 
     LecturaOperaciones(&libt, &a, &lsobb);
@@ -181,7 +180,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "/Operaciones-Envios.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {
@@ -262,7 +261,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
                 evocar++;
 
                 int exito=0;
-            evocarLIBT(libt, aux.codigo, &aux2, &contador);
+                evocarLIBT(libt, aux.codigo, &aux2, &contador);
                 evocarLSOBB(lsobb,aux.codigo,&aux2);
                 evocacionABB(arbol,aux.codigo,&exito);
 

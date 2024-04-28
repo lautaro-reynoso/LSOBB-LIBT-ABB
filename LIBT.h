@@ -13,9 +13,33 @@ typedef struct {
     int contador;
     int vector_aux[MAX_Envios];
     float eExMax, eExMed, eFrMax, eFrMed, aMax, aMed, bMax, bMed, celCont,tempa,tempb, eExCant,eFrCant,aCant,bCant,costo,costoEvoE,costoEvoF,tempe,tempef;
+
+        int exitos;
+    int fracasos;
+    int max_exitos;
+    int max_fracasos;
+    int total_exitos;
+    int total_fracasos;
+    int total_celdas_consultadas_exitos;
+    int total_celdas_consultadas_fracasos;
+    float media_exitos;
+    float media_fracasos;
 }libt;
 
 void initLIBT(libt *lista) {
+
+         lista->exitos = 0;
+    lista->fracasos  = 0;
+    lista->max_exitos = 0;
+    lista->max_fracasos = 0;
+    lista->total_exitos = 0;
+    lista->total_fracasos = 0;
+    lista-> total_celdas_consultadas_fracasos = 0;
+    lista->total_celdas_consultadas_exitos = 0;
+    lista->media_fracasos = 0.0;
+    lista->media_exitos = 0.0;
+    // Nuevas variables para el seguimiento de éxitos y fracasos
+
 
     lista->eExMax = 0.0;
     lista->eExMed = 0.0;
@@ -54,6 +78,21 @@ int LocalizarLIBT(libt *lista, char codigo[], int *pos, int p) {
 
             *pos = m;
 
+  if (p == 0) {
+
+                lista->exitos++;
+                lista->total_exitos++;
+                if (celdas_consultadas > lista->max_exitos) {
+                    lista->max_exitos = celdas_consultadas ;
+                }
+
+                lista->total_celdas_consultadas_exitos += celdas_consultadas; // Actualizar el total de celdas consultadas para éxitos
+                lista->media_exitos = (float) lista->total_celdas_consultadas_exitos / lista->total_exitos; // Calcular la media para éxitos
+            }
+
+
+
+
 
             return 1; // Elemento encontrado
         } else if (strcmp(codigo, lista->envios[m]->codigo) < 0) {
@@ -64,14 +103,29 @@ int LocalizarLIBT(libt *lista, char codigo[], int *pos, int p) {
     }
 
     *pos = li;
+
+      if (p == 0) {
+        lista->fracasos++;
+        lista->total_fracasos++;
+        if (celdas_consultadas > lista->max_fracasos) {
+            lista->max_fracasos = celdas_consultadas ;
+        }
+        lista->total_celdas_consultadas_fracasos += celdas_consultadas; // Actualizar el total de celdas consultadas para fracasos
+        lista->media_fracasos = (float) lista->total_celdas_consultadas_fracasos / lista->total_fracasos; // Calcular la media para fracasos
+    }
     return 0; // Elemento no encontrado
 
 }
 
 
 int AltaLIBT(libt *lista, Envio envio) {
+
+       int costo =0.0;
+
+
+
     int pos,i;
-    if(LocalizarLIBT(lista,envio.codigo,&pos,0)==0){
+    if(LocalizarLIBT(lista,envio.codigo,&pos,1)==0){
         Envio *aux;
         aux = (Envio*)malloc(sizeof(Envio));
 
@@ -91,7 +145,7 @@ int AltaLIBT(libt *lista, Envio envio) {
 
         if((*lista).contador!=0){
             for (i = lista->contador; i >= pos; i--) {
-                lista->costo++;
+               costo++;
                 lista->envios[i + 1] = lista->envios[i];
 
 
@@ -103,27 +157,34 @@ int AltaLIBT(libt *lista, Envio envio) {
 
         lista->contador++;
 
-        if (lista->costo > lista->aMax) {
-            lista->aMax = lista->costo; //maximo
+          if (costo > lista->aMax) {
+
+            lista->aMax = costo; //maximo
+
+
+
         }
-        lista->aCant++; //cantidad de altas
 
-        lista->tempa+=lista->costo; //promedio
 
+        lista->tempa+=costo; //promedio
+  lista->aCant++; //cantidad de altas
         lista->aMed=lista->tempa/(lista->aCant);
 
-        return 1;
+
+
+
+        return 0;
 
     }
 
-    return 0;
+    return 1;
 
 }
 
 
 
 int BajaLIBT(libt *lista,Envio envio) {
-    lista->costo =0.0;
+   int costo =0.0;
 
 
 
@@ -132,7 +193,7 @@ int BajaLIBT(libt *lista,Envio envio) {
     int pos, i;
 
 
-    int localizar_resultado = LocalizarLIBT(lista,envio.codigo,&pos,0);
+    int localizar_resultado = LocalizarLIBT(lista,envio.codigo,&pos,1);
 
     if( (strcmp(lista->envios[pos]->direccion , envio.direccion)==0) && (lista->envios[pos]->dni_receptor == envio.dni_receptor)
         && (lista->envios[pos]->dni_remitente == envio.dni_remitente) && (strcmp(lista->envios[pos]->fecha_envio,envio.fecha_envio)==0)
@@ -141,7 +202,7 @@ int BajaLIBT(libt *lista,Envio envio) {
 
         if (localizar_resultado) {
             for (i = pos; i < lista->contador-1; i++) {
-                lista->costo++; //corrimiento
+                costo++; //corrimiento
                 lista->envios[i] = lista->envios[i + 1];
             }
 
@@ -150,13 +211,13 @@ int BajaLIBT(libt *lista,Envio envio) {
             lista->contador--;
 
 
-            if (lista->costo > lista->bMax) {
+            if (costo > lista->bMax) {
 
-                lista->bMax = lista->costo; //maximo
+                lista->bMax = costo; //maximo
 
             }
 
-            lista->tempb+=lista->costo; //promedio
+            lista->tempb+=costo; //promedio
             lista->bCant++;
             lista->bMed=lista->tempb/(lista->bCant);
 
@@ -178,21 +239,27 @@ int BajaLIBT(libt *lista,Envio envio) {
 return 0;
 }
 
-int evocarLIBT (libt lista, char codigo[], Envio *envio, int *contador){
-    int pos;
-    int res = LocalizarLIBT(&lista,codigo,&pos,0);
-    Envio *aux;
-    if (res == 1){
-        strcpy(aux->codigo,lista.envios[pos]->codigo);
-        strcpy(aux->nombre,lista.envios[pos]->nombre);
-        strcpy(aux->fecha_recepcion,lista.envios[pos]->fecha_recepcion);
-        strcpy(aux->fecha_envio,lista.envios[pos]->fecha_envio);
-        strcpy(aux->direccion,lista.envios[pos]->direccion);
-        strcpy(aux->nombre_r,lista.envios[pos]->nombre_r);
-        aux->dni_remitente=lista.envios[pos]->dni_remitente;
-        aux->dni_receptor=lista.envios[pos]->dni_receptor;
+int evocarLIBT (libt *lista, char codigo[], Envio *envio, int *contador){
 
-        *envio = *aux;
+
+    int pos;
+
+    if(lista->contador==0)
+        return 0;
+    int res = LocalizarLIBT(lista,codigo,&pos,0);
+    Envio aux;
+    if (res == 1){
+
+        strcpy(aux.codigo,lista->envios[pos]->codigo);
+        strcpy(aux.nombre,lista->envios[pos]->nombre);
+        strcpy(aux.fecha_recepcion,lista->envios[pos]->fecha_recepcion);
+        strcpy(aux.fecha_envio,lista->envios[pos]->fecha_envio);
+        strcpy(aux.direccion,lista->envios[pos]->direccion);
+        strcpy(aux.nombre_r,lista->envios[pos]->nombre_r);
+        aux.dni_remitente=lista->envios[pos]->dni_remitente;
+        aux.dni_receptor=lista->envios[pos]->dni_receptor;
+
+        *envio = aux;
         return 1;// se
         // econtro
     }else

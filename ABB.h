@@ -55,8 +55,7 @@ int localizarABB(arbol *a,char codigo[], int f)
     //a->eFrMax = 0;
     a->pos = a->raiz;
     a->padre = a->raiz;
-    while((*a).pos != NULL && strcmp((*a).pos->envio.codigo, codigo)!=0)
-    {
+    while((*a).pos != NULL && strcmp((*a).pos->envio.codigo, codigo)!=0){
         a->celCont++;
         if (strcmp((*a).pos->envio.codigo, codigo) > 0)
         {
@@ -70,7 +69,7 @@ int localizarABB(arbol *a,char codigo[], int f)
         }
 
     }
-    a->celCont+1;
+
     if ((*a).pos == NULL){
         if(f == 2){
             if(a->celCont > a->eFrMax){
@@ -83,6 +82,7 @@ int localizarABB(arbol *a,char codigo[], int f)
 
         return 0;
     }else{
+        a->celCont++;
         if(f == 2){
 
             if(a->celCont > a->eExMax){

@@ -11,10 +11,10 @@ char *Mayusculas(char string[]);
 typedef struct {
     Envio *envios [MAX_Envios];
     int contador;
-    int vector_aux[MAX_Envios];
+
     float eExMax, eExMed, eFrMax, eFrMed, aMax, aMed, bMax, bMed, celCont,tempa,tempb, eExCant,eFrCant,aCant,bCant,costo,costoEvoE,costoEvoF,tempe,tempef;
 
-        int exitos;
+    int exitos;
     int fracasos;
     int max_exitos;
     int max_fracasos;
@@ -28,7 +28,7 @@ typedef struct {
 
 void initLIBT(libt *lista) {
 
-         lista->exitos = 0;
+    lista->exitos = 0;
     lista->fracasos  = 0;
     lista->max_exitos = 0;
     lista->max_fracasos = 0;
@@ -77,8 +77,7 @@ int LocalizarLIBT(libt *lista, char codigo[], int *pos, int p) {
 
 
             *pos = m;
-
-  if (p == 0) {
+            if (p == 0) {
 
                 lista->exitos++;
                 lista->total_exitos++;

@@ -7,7 +7,64 @@
 #include "LIBT.h"
 #include "ABB.h"
 #include "LSOBB.h"
+/*
+ * Analisis de resultados:
 
+Altas:
+Alta Máxima:
+LIBT: 29.00
+LSOBB: 58.00
+ABB: 0.50
+Para las altas, el ABB es claramente superior en términos de eficiencia,
+con un costo mucho menor que las otras dos estructuras.
+
+Bajas:
+Baja Máxima:
+LIBT: 23.50
+LSOBB: 47.00
+ABB: 0.50
+En el caso de las bajas máximas, tanto LIBT como LSOBB tienen el mismo costo,
+mientras que ABB sigue siendo la opción más eficiente.
+
+Evocaciones de Éxito:
+Máxima Evocación Exitosa:
+LIBT: 6.00
+LSOBB: 6.00
+ABB: 12.00
+Media Evocación Exitosa:
+LIBT: 4.70
+LSOBB: 5.55
+ABB: 5.72
+Para las evocaciones de éxito, LIBT parece ser la mejor opción en términos de costos,
+seguida de cerca por ABB. LSOBB tiene un costo más alto en ambos casos.
+
+Evocaciones de Fracaso:
+Máxima Evocación Fracaso:
+LIBT: 6.00
+LSOBB: 6.00
+ABB: 11.00
+Media Evocación Fracaso:
+LIBT: 5.09
+LSOBB: 4.83
+ABB: 6.48
+Para las evocaciones de fracaso, LSOBB parece ser la mejor opción en términos de costos,
+seguida por LIBT. ABB tiene un costo más alto en ambos casos.
+
+
+Altas: El árbol binario de búsqueda (ABB) es la opción más eficiente, con un costo significativamente menor que las otras estructuras.
+Bajas: ABB sigue siendo la opción más eficiente, con un costo mínimo, mientras que la lista invertida por búsqueda por trisección (LIBT) y la lista secuencial ordenada por búsqueda binaria (LSOBB) tienen costos equivalentes.
+Evocaciones de Éxito: La lista invertida por búsqueda por trisección (LIBT) tiene el costo más bajo, seguida de cerca por ABB. La lista secuencial ordenada por búsqueda binaria (LSOBB) tiene costos más altos en este caso.
+Evocaciones de Fracaso: La lista secuencial ordenada por búsqueda binaria (LSOBB) muestra la eficiencia más alta en términos de costos, seguida por LIBT. ABB tiene un costo más alto para evocaciones de fracaso.
+
+
+En general, ABB parece ser la opción más eficiente en términos de costos para altas y bajas,
+mientras que LIBT y LSOBB son más competitivas para evocaciones de éxito y de fracaso,
+respectivamente. La elección final dependerá de las prioridades y necesidades específicas
+del sistema en el que se implementen estas estructuras de datos.
+ *
+ *
+ *
+ */
 int LecturaOperaciones();
 char* Mayusculas();
 void mostrarestructura();
@@ -77,7 +134,7 @@ int main()
     lsobb.contador=0;
     initLSOBB(&lsobb);
 
-    LecturaOperaciones(&libt, &a, &lsobb);
+
 
     do
     {
@@ -92,14 +149,14 @@ int main()
         {
             case 1:
                 system("cls");
-
+                LecturaOperaciones(&libt, &a, &lsobb);
 
                 printf("\t AltaMax | AltaMed | BajaMax | BajaMed | Max.Ev.Ex | Med.Ev.Ex | Max.Ev.Fr | Med.Ev.Fr|\n");
                 printf("-----------------------------------------------------------------------------------------------\n");
-                printf("LIBT :: %.2f   |   %.2f |  %.2f  |  %.2f  |    %d   |   %.2f    |   %d    |   %.2f   | \n",libt.aMax, libt.aMed, libt.bMax, libt.bMed, libt.max_exitos, libt.media_exitos, libt.max_fracasos, libt.media_fracasos);
+                printf("LIBT :: %.2f   |   %.2f |  %.2f  |  %.2f    |    %d    |   %.2f     |   %d     |   %.2f    | \n",libt.aMax, libt.aMed, libt.bMax, libt.bMed, libt.max_exitos, libt.media_exitos, libt.max_fracasos, libt.media_fracasos);
                 printf("-----------------------------------------------------------------------------------------------\n");
                 printf("LSOBB :: %.2f   |   %.2f |  %.2f  |  %.2f  |    %.2f   |   %.2f    |   %.2f    |   %.2f   | \n",lsobb.aMax, lsobb.aMed, lsobb.bMax, lsobb.bMed, lsobb.eExMax, lsobb.eExMed, lsobb.eFrMax, lsobb.eFrMed);
-                   printf("-----------------------------------------------------------------------------------------------\n");
+                printf("-----------------------------------------------------------------------------------------------\n");
                 printf("ABB   ::  %.2f   |    %.2f |   %.2f  |   %.2f  |   %.2f   |   %.2f    |  %.2f    |   %.2f   | \n",a.aMax, a.aMed, a.bMax, a.bMed, a.eExMax, a.eExMed, a.eFrMax, a.eFrMed);
                 printf("-----------------------------------------------------------------------------------------------\n");
                 break;
@@ -180,7 +237,7 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "/Operaciones-Envios.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {

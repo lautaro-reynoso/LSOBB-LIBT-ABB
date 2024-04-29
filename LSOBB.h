@@ -47,11 +47,11 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
     float inicio = -1, comparacion = 0;
     int medio = 0;// Limite inferior exclusivo
     float fin = lista->contador ;   // Limite superior exclusivo
+    //segnmento mas grande a la izq, testigo a la derecha
     lista->costoEvoE=0.0;
     lista->costoEvoF=0.0;
-
-
-
+    int vector_aux[10], i = 0;
+    int bandera= 0;
 
     float temp =0.0;
     if(lista->contador==0){
@@ -69,18 +69,28 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
         return 0;
     }
 
-
-
     while (inicio+1 <fin-1) {
+
         temp++;
         medio = ((inicio + fin ) / 2)+ 1;
         comparacion = strcmp( lista->envios[medio].codigo, codigo);
+        vector_aux[i] = medio;
+        i++;
         if (comparacion > 0) {
             fin = medio;
         } else {
             inicio = medio-1;
         }
 
+    }
+    for (int j = 0;j< i;j++){
+        if(vector_aux[j] == fin-1 ){
+            bandera = 1;
+        }
+    }
+    //pregunto si la celda que que quedo ya la consulte
+    if(bandera != 1){
+        temp++;
     }
 
     // Posición de inserción si no se encontró el elemento

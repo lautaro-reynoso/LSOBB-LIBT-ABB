@@ -185,6 +185,8 @@ int AltaLIBT(libt *lista, Envio envio) {
 
 
 int BajaLIBT(libt *lista,Envio envio) {
+
+    //Liberar memoria free() y controlar antes de baja estructura vacia 
    float costo =0.0;
 
 

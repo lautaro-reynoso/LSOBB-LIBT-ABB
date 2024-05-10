@@ -9,7 +9,7 @@
 #include "LSOBB.h"
 /*
  * Analisis de resultados:
-
+//CAMBIAR ANALISIS ENTRE LSOBB Y  LIBT
 Altas:
 Alta Máxima:
 LIBT: 29.00

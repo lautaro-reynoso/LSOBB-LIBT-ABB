@@ -246,8 +246,10 @@ int LecturaOperaciones(libt *libt,arbol *arbol, lsobb *lsobb)
     }
     else
     {
-        int codigoOperador=0, contadorEnvios=0,i;
-        while (!(feof(fp))&&contadorEnvios<=MAX_Envios)
+        int codigoOperador=0,i;
+
+    
+        while (!(feof(fp)))
         {
 
 

@@ -85,7 +85,7 @@ for(i=0;i<lista->contador;i++){
             inicio = medio-1;
         }
 
-        if(vector_aux=[m] ==0){
+        if(vector_aux=[m] ==0){//while (listatamano>1)
                 temp++;
             //Hacer actualizacion de limites y calculos de tests (ok)
                vector_aux=[m] = 1;

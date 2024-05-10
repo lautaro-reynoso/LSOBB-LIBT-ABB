@@ -94,7 +94,7 @@ for(i=0;i<lista->contador;i++){
     }
 
 
-    if(vector_aux[fin-1]==0){
+    if(vector_aux[fin-1]==0){//Consultar en lista de tamano 1
        temp++;
     }
 

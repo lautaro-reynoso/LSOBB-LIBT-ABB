@@ -118,7 +118,7 @@ int LocalizarLIBT(libt *lista, char codigo[], int *pos, int p) {
 
 
 int AltaLIBT(libt *lista, Envio envio) {
-
+//Agregar costo de de nupla sumar 2 al contador entre celda y dato
        float costo =0.0;
 
 

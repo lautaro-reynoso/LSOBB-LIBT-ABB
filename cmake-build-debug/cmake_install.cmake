@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/lautaro/OneDrive/Escritorio/pruebasss/LSOBB-LIBT-ABB
+# Install script for directory: C:/Users/lautaro/OneDrive/Escritorio/LSOBB-LIBT-ABB
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/lautaro/OneDrive/Escritorio/pruebasss/LSOBB-LIBT-ABB/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/lautaro/OneDrive/Escritorio/LSOBB-LIBT-ABB/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

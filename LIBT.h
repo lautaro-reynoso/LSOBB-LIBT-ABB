@@ -198,7 +198,7 @@ int AltaLIBT(libt *lista, Envio envio) {
 
 int BajaLIBT(libt *lista, Envio envio) {
 
-    //Liberar memoria free() y controlar antes de baja estructura vacia 
+    //Liberar memoria free() y controlar antes de baja estructura vacia
     float costo = 0.0;
 
 
@@ -257,6 +257,15 @@ int BajaLIBT(libt *lista, Envio envio) {
 
 
     return 0;
+}
+
+void liberarmemorialibt(libt *lista){
+    int i = 0;
+    for ( i = 0;i < lista->contador; i++){
+        free(lista->envios[i]);
+    }
+
+
 }
 
 int evocarLIBT(libt *lista, char codigo[], Envio *envio, int *contador) {

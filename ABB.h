@@ -337,7 +337,15 @@ int evocacionABB(arbol *a,char codigo[],int *exito)
     }
     return 0;
 }
+void liberarmemoriaabb(nodo* nodo){
 
+    if(nodo == NULL){
+        return;
+    }
+    liberarmemoriaabb(nodo->izq);
+    liberarmemoriaabb(nodo->der);
+    free(nodo);
+}
 void inorden(nodo* nodo_actual, int *cont) {
     *cont++;
     if (nodo_actual != NULL) {

@@ -52,7 +52,7 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
     //segnmento mas grande a la izq, testigo a la derecha
     lista->costoEvoE = 0.0;
     lista->costoEvoF = 0.0;
-    int vector_aux[MAX_Envios], i = 0;
+    int vector_aux[MAX_Envios+2], i = 0;
     int bandera = 0;
 
     float temp = 0.0;
@@ -91,19 +91,23 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
         } else {
             inicio = medio - 1;
         }
-
-        if (vector_aux[medio] == 0) {//while (listatamano>1)
+        if(p == 0){
+            if (vector_aux[medio] == 1) {//while (listatamano>1)
             temp++;
             //Hacer actualizacion de limites y calculos de tests (ok)
             vector_aux[medio] = 1;
         };
 
+        }
+
     }
 
-
+if(p == 0){
     if (vector_aux[(int) fin - 1] == 0) {//Consultar en lista de tamano 1
         temp++;
     }
+
+}
 
 
 

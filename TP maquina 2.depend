@@ -104,3 +104,39 @@
 	<String.h>
 	<math.h>
 
+1715612055 source:c:\users\usuario\desktop\lsobb-libt-abb-master\main.c
+	<stdio.h>
+	<direct.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"Envios.h"
+	"LIBT.h"
+	"ABB.h"
+	"LSOBB.h"
+
+1715550533 c:\users\usuario\desktop\lsobb-libt-abb-master\envios.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1715611231 c:\users\usuario\desktop\lsobb-libt-abb-master\libt.h
+	"Envios.h"
+	<String.h>
+
+1715611620 c:\users\usuario\desktop\lsobb-libt-abb-master\abb.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<string.h>
+	<conio.h>
+	"Envios.h"
+	<malloc.h>
+
+1715612323 c:\users\usuario\desktop\lsobb-libt-abb-master\lsobb.h
+	"Envios.h"
+	<String.h>
+	<math.h>
+

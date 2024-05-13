@@ -156,12 +156,12 @@ int main() {
                        a.aMax, a.aMed, a.bMax, a.bMed, a.eExMax, a.eExMed, a.eFrMax, a.eFrMed);
                 printf("-----------------------------------------------------------------------------------------------\n");
 
+                liberarmemorialibt(&libt);
                 initLIBT(&libt);
                 libt.contador = 0;
 
-
+                liberarmemoriaabb(a.raiz);
                 initABB(&a);
-
 
                 lsobb.contador = 0;
                 initLSOBB(&lsobb);
@@ -240,7 +240,7 @@ int LecturaOperaciones(libt *libt, arbol *arbol, lsobb *lsobb) {
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "/Operaciones-Envios.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {

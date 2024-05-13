@@ -174,7 +174,7 @@ int main() {
 
                 system("cls");
                 do {
-                    LecturaOperaciones(&libt, &a, &lsobb);
+
 
                     mostrarSubmenu();
                     printf("Seleccione una opcion: ");

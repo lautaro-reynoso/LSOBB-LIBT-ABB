@@ -140,6 +140,16 @@ int main() {
         switch (opcion) {
             case 1:
                 system("cls");
+                liberarmemorialibt(&libt);
+                initLIBT(&libt);
+                libt.contador = 0;
+
+                liberarmemoriaabb(a.raiz);
+                initABB(&a);
+
+                lsobb.contador = 0;
+                initLSOBB(&lsobb);
+
                 LecturaOperaciones(&libt, &a, &lsobb);
 
                 printf("\t AltaMax | AltaMed | BajaMax | BajaMed | Max.Ev.Ex | Med.Ev.Ex | Max.Ev.Fr | Med.Ev.Fr|\n");
@@ -156,15 +166,7 @@ int main() {
                        a.aMax, a.aMed, a.bMax, a.bMed, a.eExMax, a.eExMed, a.eFrMax, a.eFrMed);
                 printf("-----------------------------------------------------------------------------------------------\n");
 
-                liberarmemorialibt(&libt);
-                initLIBT(&libt);
-                libt.contador = 0;
 
-                liberarmemoriaabb(a.raiz);
-                initABB(&a);
-
-                lsobb.contador = 0;
-                initLSOBB(&lsobb);
 
                 break;
             case 2:
@@ -172,6 +174,8 @@ int main() {
 
                 system("cls");
                 do {
+                    LecturaOperaciones(&libt, &a, &lsobb);
+
                     mostrarSubmenu();
                     printf("Seleccione una opcion: ");
                     scanf("%d", &submenu_opcion);
@@ -240,14 +244,14 @@ int LecturaOperaciones(libt *libt, arbol *arbol, lsobb *lsobb) {
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "/Operaciones-Envios.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {
         printf("No se pudo abrir el archivo\n");
         return 1;
     } else {
-        printf("enbtro");
+
         int codigoOperador = 0, i;
 
 

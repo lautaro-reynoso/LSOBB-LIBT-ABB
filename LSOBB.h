@@ -52,7 +52,7 @@ int LocalizarLSOBB(lsobb *lista, char codigo[], int *pos, int p) {
     //segnmento mas grande a la izq, testigo a la derecha
     lista->costoEvoE = 0.0;
     lista->costoEvoF = 0.0;
-    int vector_aux[MAX_Envios+2], i = 0;
+    int vector_aux[MAX_Envios], i = 0;
     int bandera = 0;
 
     float temp = 0.0;

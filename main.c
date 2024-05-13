@@ -10,12 +10,16 @@
 
 /*
  * Analisis de resultados:
-//CAMBIAR ANALISIS ENTRE LSOBB Y  LIBT
 Altas:
 Alta Máxima:
-LIBT: 29.00
+LIBT: 29.50
 LSOBB: 58.00
 ABB: 0.50
+Alta Media:
+LIBT: 8.03
+LSOBB: 15.07
+ABB: 0.50
+
 Para las altas, el ABB es claramente superior en términos de eficiencia,
 con un costo mucho menor que las otras dos estructuras.
 
@@ -23,31 +27,35 @@ Bajas:
 Baja Máxima:
 LIBT: 23.50
 LSOBB: 47.00
-ABB: 0.50
+ABB: 1.50
+Baja Media:
+LIBT: 23.50
+LSOBB: 47.00
+ABB: 1.50
 En el caso de las bajas máximas, tanto LIBT como LSOBB tienen el mismo costo,
 mientras que ABB sigue siendo la opción más eficiente.
 
 Evocaciones de Éxito:
 Máxima Evocación Exitosa:
-LIBT: 6.00
-LSOBB: 6.00
+LIBT: 12.00
+LSOBB: 6.00 original // 7.00 ver
 ABB: 12.00
 Media Evocación Exitosa:
-LIBT: 4.70
-LSOBB: 5.55
+LIBT: 9.40
+LSOBB: 5.55 original // 6.55 ver
 ABB: 5.72
 Para las evocaciones de éxito, LIBT parece ser la mejor opción en términos de costos,
 seguida de cerca por ABB. LSOBB tiene un costo más alto en ambos casos.
 
 Evocaciones de Fracaso:
 Máxima Evocación Fracaso:
-LIBT: 6.00
-LSOBB: 6.00
-ABB: 11.00
+LIBT: 12.00
+LSOBB: 6.00 original // 7.0 ver
+ABB: 10.00
 Media Evocación Fracaso:
-LIBT: 5.09
-LSOBB: 4.83
-ABB: 6.48
+LIBT: 10.17
+LSOBB: 4.83 original // 5.81  ver
+ABB: 5.48
 Para las evocaciones de fracaso, LSOBB parece ser la mejor opción en términos de costos,
 seguida por LIBT. ABB tiene un costo más alto en ambos casos.
 

@@ -41,12 +41,12 @@ pero el ABB sigue siendo la opción más eficiente en las bajas.
 Evocaciones de Éxito:
 Máxima Evocación Exitosa:
 LIBT: 12.00
-LSOBB: 6.00 original // 7.00
+LSOBB: 7.00
 ABB: 12.00
 
 Media Evocación Exitosa:
 LIBT: 9.40
-LSOBB: 5.55 original // 6.55
+LSOBB:  6.55
 ABB: 5.72
 
 Para las evocaciones de éxito, LSOBB parece ser la mejor opción en términos de costos,
@@ -55,12 +55,12 @@ mientras que el ABB y la LIBT tienen costos similares pero mas altos a comparaci
 Evocaciones de Fracaso:
 Máxima Evocación Fracaso:
 LIBT: 12.00
-LSOBB: 6.00 original // 7.0 ver
+LSOBB: 7.0 
 ABB: 10.00
 
 Media Evocación Fracaso:
 LIBT: 10.17
-LSOBB: 4.83 original // 5.81  ver
+LSOBB:  5.81 
 ABB: 5.48
 
 Para las evocaciones de fracaso, LSOBB parece ser la mejor opción en términos de costos,

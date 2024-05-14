@@ -15,6 +15,7 @@ Alta Máxima:
 LIBT: 29.50
 LSOBB: 58.00
 ABB: 0.50
+
 Alta Media:
 LIBT: 8.03
 LSOBB: 15.07
@@ -28,42 +29,48 @@ Baja Máxima:
 LIBT: 23.50
 LSOBB: 47.00
 ABB: 1.50
+
 Baja Media:
-LIBT: 23.50
-LSOBB: 47.00
-ABB: 1.50
-En el caso de las bajas máximas, tanto LIBT como LSOBB tienen el mismo costo,
-mientras que ABB sigue siendo la opción más eficiente.
+LIBT: 8.39
+LSOBB: 16.77
+ABB: 0.97
+
+En el caso de las bajas máximas, la LIBT tiene mejor resultado que acomparacion de la LSOBB,
+pero el ABB sigue siendo la opción más eficiente en las bajas.
 
 Evocaciones de Éxito:
 Máxima Evocación Exitosa:
 LIBT: 12.00
-LSOBB: 6.00 original // 7.00 ver
+LSOBB: 6.00 original // 7.00
 ABB: 12.00
+
 Media Evocación Exitosa:
 LIBT: 9.40
-LSOBB: 5.55 original // 6.55 ver
+LSOBB: 5.55 original // 6.55
 ABB: 5.72
-Para las evocaciones de éxito, LIBT parece ser la mejor opción en términos de costos,
-seguida de cerca por ABB. LSOBB tiene un costo más alto en ambos casos.
+
+Para las evocaciones de éxito, LSOBB parece ser la mejor opción en términos de costos,
+mientras que el ABB y la LIBT tienen costos similares pero mas altos a comparacion de la LSOBB
 
 Evocaciones de Fracaso:
 Máxima Evocación Fracaso:
 LIBT: 12.00
 LSOBB: 6.00 original // 7.0 ver
 ABB: 10.00
+
 Media Evocación Fracaso:
 LIBT: 10.17
 LSOBB: 4.83 original // 5.81  ver
 ABB: 5.48
+
 Para las evocaciones de fracaso, LSOBB parece ser la mejor opción en términos de costos,
-seguida por LIBT. ABB tiene un costo más alto en ambos casos.
+seguida por LIBT. ABB tiene un costo más alto en la maxima pero un costo minimo en la media.
 
 
 Altas: El árbol binario de búsqueda (ABB) es la opción más eficiente, con un costo significativamente menor que las otras estructuras.
-Bajas: ABB sigue siendo la opción más eficiente, con un costo mínimo, mientras que la lista invertida por búsqueda por trisección (LIBT) y la lista secuencial ordenada por búsqueda binaria (LSOBB) tienen costos diferentes.
-Evocaciones de Éxito: La lista invertida por búsqueda por trisección (LIBT) tiene el costo más bajo, seguida de cerca por ABB. La lista secuencial ordenada por búsqueda binaria (LSOBB) tiene costos más altos en este caso.
-Evocaciones de Fracaso: La lista secuencial ordenada por búsqueda binaria (LSOBB) muestra la eficiencia más alta en términos de costos, seguida por LIBT. ABB tiene un costo más alto para evocaciones de fracaso.
+Bajas: ABB sigue siendo la opción más eficiente, con un costo mínimo.
+Evocaciones de Éxito: La lista secuencial ordenada por búsqueda binaria (LSOBB) tiene costos más bajos en este caso , mientras que la La lista invertida por búsqueda por trisección (LIBT) tiene el costo más alto, seguida de por la ABB.
+Evocaciones de Fracaso: La lista secuencial ordenada por búsqueda binaria (LSOBB) muestra la eficiencia más alta en términos de costos, seguida por la ABB. la LIBT tiene un costo más alto para evocaciones de fracaso.
 
 
 En general, ABB parece ser la opción más eficiente en términos de costos para altas y bajas,
@@ -252,7 +259,7 @@ int LecturaOperaciones(libt *libt, arbol *arbol, lsobb *lsobb) {
 
     // Concatenar la ruta del archivo al directorio actual
     char filepath[1024];
-    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "../Operaciones-Envios.txt");
+    snprintf(filepath, sizeof(filepath), "%s\\%s", cwd, "/Operaciones-Envios.txt");
 
     // Intentar abrir el archivo en modo lectura
     if ((fp = fopen(filepath, "r")) == NULL) {
